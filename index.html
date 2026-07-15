@@ -440,17 +440,43 @@ const KALMAR = {
     "מחדד עם מיכל איסוף",
     "מחק",
     "דבק דביק",
-    "מספריים",
-    "סרגל 15 ס''מ",
+    "מספריים",    
     "עפרונות צבעוניים",
     "4 מדגשים צבעים שונים",
     "טושים סט של 12",
   ],
 };
 
+const KALMAR_A = {
+  ...KALMAR,
+  items: [
+    ...KALMAR.items,
+    "סרגל 15 ס''מ",
+  ]
+};
+
+const KALMAR_B = {
+  ...KALMAR,
+  items: [
+    ...KALMAR.items,
+    "סרגל מתכת",
+    "סרגל משולש"
+  ]
+};
+
+const KALMAR_C = {
+  ...KALMAR,
+  items: [
+    ...KALMAR.items,
+    "סרגל מתכת",
+    "מחוגה",
+    "מחשבון פשוט",
+  ]
+};
+
 const GRADES = [
   {
-    letter: "א'", price: 120, wrapChoice: true,
+    letter: "א'", price: 120, rulerChoice: true,
     items: [
     "מדבקות שם לציוד האישי",
     "תיקייה מפלסטיק בגודל A4 עם גומייה לדפי עבודה",
@@ -461,11 +487,11 @@ const GRADES = [
     "2 מחברות חכמות משובצות",
     "1 מחברת סיכה גדולה חלקה",
     "עטיפות בצבעים: צהוב, אדום, כחול, שקוף",
-    KALMAR
+    KALMAR_A
    ],
   },
   {
-    letter: "ב'", price: 100, wrapChoice: true,
+    letter: "ב'", price: 100, rulerChoice: true,
     items: [
     "מדבקות שם לציוד האישי",
     "תיקייה מפלסטיק בגודל A4 עם גומייה לדפי עבודה",
@@ -476,11 +502,11 @@ const GRADES = [
     "2 מחברות שורה גדולות",
     "2 קלסרים חצי שקופים",
     "מחברת חלקה קטנה",
-      KALMAR,
+      KALMAR_A,
     ],
   },
   {
-    letter: "ג'", price: 180, wrapChoice: true,
+    letter: "ג'", price: 120, rulerChoice: true,
     items: [
     "מדבקות שם לציוד האישי",
     "תיקיה קשיחה עם גומי גודל פוליו",
@@ -492,11 +518,11 @@ const GRADES = [
     "מחברת אנגלית",
     "מחברת חלקה קטנה",
     "מחברת סיכה חלקה גודל A4",
-      KALMAR,
+      KALMAR_A,
     ],
   },
   {
-    letter: "ד'", price: 180, wrapChoice: true,
+    letter: "ד'", price: 130, rulerChoice: true,
     items: [
     "מדבקות שם לציוד האישי",
     "תיקיית פלסטיק עם גומי לדפי עבודה",
@@ -506,29 +532,29 @@ const GRADES = [
     "2 יחידות קלסר חצי שקוף ",
     "5 שמרדפים (ניילוניות מחוררות)",
     "מחברת סיכה חלקה גודל A4",
-      KALMAR,
+      KALMAR_A,
     ],
   },
   {
-    letter: "ה'", price: 150, wrapChoice: true,
+    letter: "ה'", price: 95, rulerChoice: false,
     items: [
     "מדבקות שם לציוד האישי",
-  "7 מחברות גודל A4 שורה אחת",
+    "6 מחברות גודל A4 שורה אחת",
     "2 מחברות גודל A4 משובץ",
     "מחברת ספירלה 2 נושאים גודל A4 שורה אחת לאנגלית",
     "מחברת סיכה חלקה גודל A4",
-      KALMAR,
+      KALMAR_B,
     ],
   },
   {
-    letter: "ו'", price: 140, wrapChoice: true,
+    letter: "ו'", price: 140, rulerChoice: false,
     items: [
     "מדבקות שם לציוד האישי",
-    "7 מחברות גודל A4 שורה אחת",
+    "6 מחברות גודל A4 שורה אחת",
     "2 מחברות גודל A4 משובץ",
     "מחברת ספירלה 2 נושאים גודל A4 שורה אחת לאנגלית",
     "מחברת סיכה חלקה גודל A4",
-      KALMAR,
+      KALMAR_C,
     ],
   },
 ];
@@ -543,7 +569,7 @@ const CUSTOM_ITEMS = [
 ];
 
 function customItemsFor(g){
-  return CUSTOM_ITEMS.filter(ci => ci.key !== "wrapping" || g.wrapChoice);
+  return CUSTOM_ITEMS.filter(ci => ci.key !== "ruler" || g.rulerChoice);
 }
 
 function packagePrice(g){
@@ -672,7 +698,7 @@ function renderFAQ(){
     },
     {
       q: "האם יש דברים ברשימת בית הספר שאינם כלולים בחבילה?",
-      a: 'כן, קלמר ויומן תלמיד השארנו לבחירתכם האישית. מוזמנים להסתכל ברשימה המלאה <a href="https://hayarok.mashov.info/wp-content/uploads/sites/33/2026/07/%D7%A1%D7%A4%D7%A8%D7%99-%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%AA%D7%A9%D7%A4%D7%96-%D7%A1%D7%95%D7%A4%D7%99.docx-1.pdf" target="_blank" rel="noopener">כאן</a>.',
+      a: 'כן, קלמר ויומן תלמיד השארנו לבחירתכם האישית. מוזמנים להסתכל ברשימה המלאה <a href="https://sbentin.github.com/SchoolSupply/books.pdf" target="_blank" rel="noopener">כאן</a>.',
     },
     {
       q: "האם ספרי לימוד וחוברות נכללים בחבילה?",
