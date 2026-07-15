@@ -316,7 +316,7 @@
     background:#fff; border-radius:20px; padding:32px 28px; max-width:400px; width:100%;
     text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.25);
   }
-  .modal .check-circle{
+  .modal .check-circle, .card .check-circle{
     width:56px;height:56px;border-radius:50%;background:var(--forest-light);
     color:#fff; display:flex;align-items:center;justify-content:center;
     margin:0 auto 16px; font-size:26px;
@@ -860,10 +860,10 @@ function renderConfirm(){
   <div class="wrap">
     <div class="form-wrap">
       <div class="card" style="text-align:center;">
-        <div class="check-circle" style="margin:0 auto 16px;">✓</div>
+        <div class="check-circle" style="margin:0 auto 16px;font-size:3rem;">✓</div>
         <h2 style="color:var(--forest);">ההרשמה התקבלה בהצלחה!</h2>
         <p style="color:var(--ink-soft); line-height:1.7;">
-          תודה, ${state.form.name || "הורה יקר"}! שלחנו אישור לכתובת ${state.form.email || ""}.<br>
+          תודה, ${state.form.name || "הורה יקר"}! להלן פרטי ההזמנה. ניתן לשמור העתק ע''י הדפסה.<br>
           נעדכן אתכם בהודעה כשהחבילה שלכם תהיה מוכנה לאיסוף בכפר השעשועים, חנקין 14, הוד״ש.
         </p>
       </div>
