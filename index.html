@@ -371,7 +371,7 @@
     border:1.5px solid var(--paper-line); background:#fff; color:var(--ink-soft);
   }
   .pill.active{background:var(--forest); color:#fff; border-color:var(--forest);}
-
+  .wrap-comment{font-size:smaller; font-style:italic;:var(--ink-soft); margin-top:6px; display:flex; flex-direction:column; gap:4px;}
   /* ---------- Discount banner ---------- */
   .discount-banner{
     display:flex; align-items:center; gap:10px; justify-content:center;
@@ -837,6 +837,7 @@ function renderCheckout(){
 }
 
 function renderConfirm(){
+  let hasWrapping = state.cart.some(c => c.custom && c.custom.wrapping === "עם");
   const packages = state.cart.map(c => `
     <div class="confirm-pkg">
       <div class="confirm-pkg-head">
@@ -845,13 +846,15 @@ function renderConfirm(){
         <span class="confirm-pkg-price">${c.price} ₪</span>
       </div>
       <ul class="confirm-custom">
-        ${CUSTOM_ITEMS.filter(ci => c.custom && ci.key in c.custom).map(ci => `
+        ${CUSTOM_ITEMS.filter(ci => c.custom && ci.key in c.custom && ci.key !== 'wrapping').map(ci => `
           <li><span class="ck">${ci.label}</span><span class="cv">${c.custom[ci.key] || "—"}</span></li>
         `).join("")}
       </ul>
     </div>
   `).join("");
-
+  
+  const grandTotal = cartTotal();
+  state.cart = []; // clear cart after confirmation
   return `
   ${topbar()}
   <div class="wrap">
@@ -868,7 +871,8 @@ function renderConfirm(){
       <div class="card" style="margin-top:20px;">
         <h3>תכולת ההזמנה שלכם</h3>
         ${packages || '<div class="empty-cart-hint">הסל ריק</div>'}
-        <div class="summary-total"><span>סה״כ לתשלום באיסוף</span><span>${cartTotal()} ₪</span></div>
+        <div class="summary-total"><span>סה״כ לתשלום באיסוף</span><span>${grandTotal} ₪</span></div>
+        ${hasWrapping ? `<div class="wrap-comment"><span><b>*</b> ביקשת שירות עטיפת ספרים. השירות ניתן בעלות נוספת של ${WRAP_PRICE} ₪ ליחידה. נציג כפר השעשועים ייצור עמך קשר לתיאום.</span></div>` : ''}
       </div>
 
       <div class="card" style="margin-top:20px;">
